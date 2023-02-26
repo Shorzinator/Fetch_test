@@ -1,11 +1,12 @@
 -- Q1
-SELECT ri.BRAND_CODE, sum(TOTAL_FINAL_PRICE) as total
+SELECT ri.BRAND_CODE
 FROM receipt_items ri
 WHERE (substring(MODIFY_DATE, 5, 4) = '-06-')
   AND (BRAND_CODE IS NOT NULL)
   AND (TOTAL_FINAL_PRICE IS NOT NULL)
 GROUP BY ri.BRAND_CODE
-ORDER BY total DESC;
+ORDER BY sum(TOTAL_FINAL_PRICE) DESC
+LIMIT 1;
 -- Due to the ambiguity as to what brand_code does 'NULL' belong to, I have ignored the 'NULL' value and gone with the next brand_code.
 -- correct
 
