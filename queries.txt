@@ -1,0 +1,46 @@
+-- Q1: Which brand saw the most dollars spent in the month of June?
+SELECT ri.BRAND_CODE
+FROM receipt_items ri
+WHERE (substring(MODIFY_DATE, 5, 4) = '-06-')
+  AND (BRAND_CODE IS NOT NULL)
+  AND (TOTAL_FINAL_PRICE IS NOT NULL)
+GROUP BY ri.BRAND_CODE
+ORDER BY sum(TOTAL_FINAL_PRICE) DESC
+LIMIT 1;
+-- Due to the ambiguity as to what brand_code does 'NULL' belong to, I have ignored the 'NULL' value and gone with the next brand_code.
+-- correct
+
+-- Q2: Which user spent the most money in the month of August?
+SELECT u.ID as User_ID
+FROM Receipts r
+JOIN Users u ON u.ID = r.USER_ID
+WHERE (SUBSTRING(r.DATE_SCANNED, 6, 2) = '08')
+GROUP BY u.ID
+ORDER BY MAX(r.TOTAL_SPENT) DESC
+LIMIT 1;
+
+-- Q3: What user bought the most expensive item?
+SELECT r.USER_ID
+FROM Receipt_items ri
+JOIN Receipts r ON r.ID = ri.REWARDS_RECEIPT_ID
+WHERE ri.TOTAL_FINAL_PRICE = (
+  SELECT MAX(TOTAL_FINAL_PRICE)
+  FROM Receipt_items
+)
+LIMIT 1;
+--correct
+
+-- Q4: What is the name of the most expensive item purchased?
+SELECT ri.description
+FROM receipt_items ri
+GROUP BY DESCRIPTION
+ORDER BY max(TOTAL_FINAL_PRICE) desc
+LIMIT 1;
+-- correct
+
+-- Q5: How many users scanned in each month?
+SELECT count(distinct(USER_ID)) as user_count, SUBSTRING(DATE_SCANNED, 6, 2) AS month
+FROM receipts
+WHERE DATE_SCANNED is not NULL
+GROUP by month;
+--correct
