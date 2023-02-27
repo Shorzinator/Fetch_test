@@ -7,5 +7,7 @@ I Tried to answer **all** the queries that were listed on the test. In the quest
 Details about the files I have added -
 1. I have added the queries as an sql file along with a text file. You can try to run the SQL file directly in the database.
 2. I have added the ER diagram, which I made using a digital tool which essential helped me do it in a more clean and quick manner as compared to doing it by hand.
-<br>
+
+Along with that, I have added the ER diagram and another representation of the database showing features like optional keys, foreign keys, etc.
+
 Thank you!
