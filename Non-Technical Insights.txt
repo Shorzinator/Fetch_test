@@ -32,3 +32,6 @@ SELECT AVG(r.TOTAL_SPENT) as AVERAGE_AMOUNT_SPENT, SUBSTRING(PURCHASE_DATE, 6, 2
 FROM Receipts r
 WHERE MONTH IS NOT NULL
 GROUP BY MONTH;
+
+--
+4. There are a lot of NULL values which is a problem expecially in the numerical variables. since it hampers one;s ability to understand the patterns (if any) that exist in the data.
